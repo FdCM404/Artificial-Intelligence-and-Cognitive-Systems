@@ -16,18 +16,20 @@
 %   Paths é a lista de caminhos ainda por explorar.   
 %   O primeiro caminho (OldPath) é o mais antigo porque o BFS assemelha-se uma fila (FIFO).
 %   OtherPaths são os restantes caminhos na "fila"
+% 
+% Tendo em conta o grafo do slide "Raciocinio Automatica PT2" pex: Path[2-right, 0-none] entao State=2 e ActionTaken=right
 
-%
-%
-%
-%
-%
+% A clausula findall(---) é usada para gerar todos os novos caminhos sucessores que saem do estado atual.
+% O predicado sucessor/3:
+%   Usa as regras transition/3 para descobrir os estados seguintes.
+%   Cria um novo caminho (NextPath) adicionando o novo estado ao inicio do caminho atual.
 
 % Primeiro predicado:
 bfs_search(Paths, FinalPath) :-
 
     Paths = [OldPath | OtherPaths],
     Path = [CurrState-ActionTaken|_],
+    % format("1ST : Current State ~w with Action ~w~n", [CurrState, ActionTaken]), % So para debug
 
     findall(NextPath, sucessor(OldPath, OtherPaths, NextPath), NextPaths),
 

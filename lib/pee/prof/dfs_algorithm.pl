@@ -14,6 +14,7 @@
 % Primeiro predicado:
 dfs_search(CurrPath, FinalPath) :-
 	expand_current_node(CurrPath, PathWithNewNode), % Gera UM sucessor
+	format("1ST: Exploring CurrPath ~w and PathWithNweNode ~w~n", [CurrPath, PathWithNewNode]), % So para debug
 	dfs_search(PathWithNewNode, FinalPath).		% Explora-o imediatamente
 	
 % Segundo predicado:
