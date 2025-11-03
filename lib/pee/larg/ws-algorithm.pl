@@ -23,6 +23,8 @@
 % O predicado sucessor/3:
 %   Usa as regras transition/3 para descobrir os estados seguintes.
 %   Cria um novo caminho (NextPath) adicionando o novo estado ao inicio do caminho atual.
+%   Garante que o novo estado nao foi explorado antes (verifca com explored/2).
+%
 
 % Primeiro predicado:
 bfs_search(Paths, FinalPath) :-
@@ -32,6 +34,7 @@ bfs_search(Paths, FinalPath) :-
     % format("1ST : Current State ~w with Action ~w~n", [CurrState, ActionTaken]), % So para debug
 
     findall(NextPath, sucessor(OldPath, OtherPaths, NextPath), NextPaths),
+    % format("1ST : Next Paths ~w~n", [NextPaths]), % So para debug
 
     length(NextPaths, N),
 
