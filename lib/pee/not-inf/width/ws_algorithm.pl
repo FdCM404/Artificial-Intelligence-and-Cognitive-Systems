@@ -40,8 +40,10 @@ bfs_search(Paths, FinalPath) :-
 
     Paths = [OldPath | OtherPaths],
     OldPath = [CurrState-ActionTaken|_],
-    % format("1ST : Current State ~w with Action ~w~n", [CurrState, ActionTaken]), % So para debug
+    format("1ST : Current State ~w with Action ~w~n", [CurrState, ActionTaken]), % So para debug
+    format("1ST : Old Path ~w~n", [OldPath]), % So para debug
 
+% Gera todas as solucoes possiveis apenas para o currState onde se encontra.
 % Gera todas as solucoes possiveis de sucessor([0-_],[], X)]) e guarda na lista X
     findall(NextPath, sucessor(OldPath, OtherPaths, NextPath), NextPaths), % OldPath unificado com o valor do CurrState (1* iteraçao)
     % format("1ST : Next Paths ~w~n", [NextPaths]), % So para debug
