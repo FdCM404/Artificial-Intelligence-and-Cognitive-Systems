@@ -25,15 +25,23 @@
 %   Cria um novo caminho (NextPath) adicionando o novo estado ao inicio do caminho atual.
 %   Garante que o novo estado nao foi explorado antes (verifca com explored/2).
 %
+% ------------------------------------------------
 
 % Primeiro predicado:
+% Se o estado atual for o objetivo, a solucao é encontrada
+bfs_search([Path|_], Path) :-
+    Path = [CurrState-_|_], % Unifica CurrState com o estado atual do caminho
+    goal(CurrState).
+
+% Segundo predicado:
 bfs_search(Paths, FinalPath) :-
 
     Paths = [OldPath | OtherPaths],
-    Path = [CurrState-ActionTaken|_],
+    OldPath = [CurrState-ActionTaken|_],
     % format("1ST : Current State ~w with Action ~w~n", [CurrState, ActionTaken]), % So para debug
 
-    findall(NextPath, sucessor(OldPath, OtherPaths, NextPath), NextPaths),
+% Gera todas as solucoes possiveis de sucessor([0-_],[], X)]) e guarda na lista X
+    findall(NextPath, sucessor(OldPath, OtherPaths, NextPath), NextPaths), % OldPath unificado com o valor do CurrState (1* iteraçao)
     % format("1ST : Next Paths ~w~n", [NextPaths]), % So para debug
 
     length(NextPaths, N),
@@ -42,28 +50,30 @@ bfs_search(Paths, FinalPath) :-
 
     bfs_search(NewPaths, FinalPath).
 
-% Segundo predicado:
+% Terceiro predicado:
 sucessor([Node|RestOfPath], Paths, NewPath) :-
     Node = CurrState-_,
-    transition(CurrState, NextState, ActionTaken),
-    \+ explored(NextState, Paths),
+    format("3RD : Node ~w and CurrState ~w~n", [Node, CurrState]), % So para debug
+    transition(CurrState, NextState, ActionTaken), % "Do estado atual posso ir para o seguinte atraves da açao"
+    \+ explored(NextState, Paths), % Negaçao por falha, sera sucessful na primeira iteraçao (devido ao "\+")
     NewPath = [NextState-ActionTaken, Node | RestOfPath].
+    format("3RD : New Path ~w~n", [NewPath]). % So para debug
 
-
-% Terceiro predicado:
+% Quarto predicado:
 explored(State, Paths) :-
     member(Path, Paths),
     member(State-_, Path).
+% Vai falhar na primeira iteraçao se o objetivo nao estiver no primeiro caminho. 
+% No caso do ws-testing.pl ha de aparecer que o estado 1 nao foi explorado ainda (apos ele entrar no predicado sucessor/3 e verificar o facto encontrado na transiçao 0->1)
 
 
-% Quarto predicado:
-solve(InitState, Solution) :-
-    bfs_search([[InitState-start]], PathReversed),
-    reverse(PathReversed, Solution).
 
 
 % Quinto predicado:
-% Se o estado atual for o objetivo, a solucao é encontrada
-bfs_search([Path|_], Path) :-
-    Path = [CurrState-_|_],
-    goal(CurrState).
+%   Cada caminho é uma lista de pares Estado-Ação.
+%   No iniciao nao ha acao, entao é "start"
+solve(InitState, Solution) :-
+    bfs_search([[InitState-Start]], PathReversed),
+    reverse(PathReversed, Solution).
+
+
