@@ -33,6 +33,8 @@ bfs_search([Path|_], Path) :-
     Path = [CurrState-_|_], % Unifica CurrState com o estado atual do caminho
     goal(CurrState).
 
+% Depois da primeira iteraçao completa ja com a obtençao dos NextPaths (no caso, 0_to_1 e 0_to_2) ele vai extrair 
+% o primeiro caminho da lista, expandilo e adiciona ao fim da lista dos oldpaths
 % Segundo predicado:
 bfs_search(Paths, FinalPath) :-
 
@@ -46,8 +48,8 @@ bfs_search(Paths, FinalPath) :-
 
     length(NextPaths, N),
 
-    append(OtherPaths, NextPaths, NewPaths),
-
+    append(OtherPaths, NextPaths, NewPaths), % primeira iter: unifica NextPaths com newPaths
+    % format("2ND : New Paths ~w~n", [NewPaths]), % So para debug
     bfs_search(NewPaths, FinalPath).
 
 % Terceiro predicado:
@@ -56,7 +58,7 @@ sucessor([Node|RestOfPath], Paths, NewPath) :-
     format("3RD : Node ~w and CurrState ~w~n", [Node, CurrState]), % So para debug
     transition(CurrState, NextState, ActionTaken), % "Do estado atual posso ir para o seguinte atraves da açao"
     \+ explored(NextState, Paths), % Negaçao por falha, sera sucessful na primeira iteraçao (devido ao "\+")
-    NewPath = [NextState-ActionTaken, Node | RestOfPath].
+    NewPath = [NextState-ActionTaken, Node | RestOfPath],
     format("3RD : New Path ~w~n", [NewPath]). % So para debug
 
 % Quarto predicado:
