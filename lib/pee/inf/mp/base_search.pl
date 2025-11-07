@@ -22,7 +22,7 @@ insert_sucessors([NextNode|NextNodes], Frontier, NewFrontier, Explored):-
 
 % 5 PREDICADO
 insert_sucessors([NextNode|NextNodes], Frontier, NewFrontier, Explored):-
-    check(NextNode, F), % Avalia se o nó sucessor deve ser adicionado à fronteira
+    check_func(NextNode, F), % Avalia se o nó sucessor deve ser adicionado à fronteira
     frontier_insert(Frontier, F, NextNode, FrontierNext), % Insere o nó sucessor na fronteira
     explored_insert(Explored, NextNode), 
     insert_sucessors(NextNodes, FrontierNext, NewFrontier, Explored).
