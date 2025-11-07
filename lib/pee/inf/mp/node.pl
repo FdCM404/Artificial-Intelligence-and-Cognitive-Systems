@@ -12,11 +12,11 @@
         % G - Custo acumulado do caminho até ao nó
 
 % 1 PREDICADO: Cria um nó inicial a partir do "CurrentState" (ou do estado inicial)
-node(CurrState-none-none-0-0, CurrState).
+node_create(CurrState-none-none-0-0, CurrState).
 
 % 2 PREDICADO: Cria um novo nó a partir do nó antecessor, do operador que gerou o nó e do custo da açao (operador)
             % A Profundidade é calculada com um incremento em relaçao à profundidade do nó anterior
-node(CurrState-PrevNode-ActionTaken-Depth-G, CurrState, PrevNode, ActionTaken, ActionCost):-
+node_create(CurrState-PrevNode-ActionTaken-Depth-G, CurrState, PrevNode, ActionTaken, ActionCost):-
     node_depth(PrevNode, PrevDepth),
     node_g(PrevNode, PrevG),
     Depth is PrevDepth + 1,

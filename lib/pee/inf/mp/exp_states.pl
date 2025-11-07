@@ -32,9 +32,11 @@ explored_check(Node,Explored):-
     G >= GExp. % Se o custo do nó for maior ou igual ao custo do nó explorado, considera-o explorado
 
 % 6 PREDICADO: Enumera os nos explorados
+% ht_gen(+HT, ?Key, ?Value) : "True when Key-Value is in HT. Pairs are enumerated on backtracking using the hash table order."
 explored_enumerate(Explored, Node):-
     ht_gen(Explored, Node, _).
 
 % 7 PREDICADO: Mostra os nós explorados (para debug)
 explored_show(Explored):-
-    forall()
+    forall(explored_enumerate(Explored, Node)),
+    format('Explored Node: ~w~n', [Node]).
