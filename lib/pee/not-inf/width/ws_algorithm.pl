@@ -70,9 +70,6 @@ explored(State, Paths) :-
 % Vai falhar na primeira iteraçao se o objetivo nao estiver no primeiro caminho. 
 % No caso do ws-testing.pl ha de aparecer que o estado 1 nao foi explorado ainda (apos ele entrar no predicado sucessor/3 e verificar o facto encontrado na transiçao 0->1)
 
-
-
-
 % Quinto predicado:
 %   Cada caminho é uma lista de pares Estado-Ação.
 %   No iniciao nao ha acao, entao é "start"
