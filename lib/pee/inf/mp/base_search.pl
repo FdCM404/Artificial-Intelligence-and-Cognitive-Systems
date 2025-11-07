@@ -3,7 +3,7 @@
 :- consult(exp_states).
 :- consult(solution).
 
-expand(Node, Successors):-
+expand_node(Node, Successors):-
     findall(NextNode, successor(Node, NextNode), Successors). % Finds all successors of the node
 
 successor(Node, NextNode):-
