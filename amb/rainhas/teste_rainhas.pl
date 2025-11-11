@@ -1,7 +1,7 @@
 :- encoding(utf8).
 
-:- consult('../lib/optim/hc').
-:- consult('../lib/optim/hcr').
+:- consult('../../lib/pee/inf/hc/hc').
+:- consult('../../lib/pee/inf/hc/hcr').
 :- consult(prob_rainhas).
 
 % Mostrar resultado obtido
