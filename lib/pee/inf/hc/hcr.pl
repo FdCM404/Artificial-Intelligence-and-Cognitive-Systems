@@ -31,3 +31,19 @@ manter_melhor(Estado1, Estado2, MelhorEstado) :-
             MelhorEstado = Estado1 ;
             MelhorEstado = Estado2           
     ).
+
+
+% Fim das repetições - CORRIGIDO AQUI
+%hcr(MelhorEstado, MelhorEstado, _, NRep) :-
+%    NRep =< 0, !.
+%
+%% Repetir procuras com reinícios aleatórios - ADICIONADO GUARDA
+%hcr(MelhorEstadoActual, MelhorEstadoFinal, NIter, NRep) :-
+%    NRep > 0,
+%    estado_aleat(EstadoInicial),
+%    hc(EstadoInicial, MelhorEstado, NIter),
+%    manter_melhor(MelhorEstadoActual, MelhorEstado, MelhorEstadoN),
+%    NovoNRep is NRep - 1,
+%    hcr(MelhorEstadoN, MelhorEstadoFinal, NIter, NovoNRep).
+
+% "Once local optimal reached, try again starting from a random chosen X"

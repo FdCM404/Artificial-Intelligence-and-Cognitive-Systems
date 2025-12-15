@@ -1,10 +1,10 @@
-% ===============================================
+% ==
 % TABULEIRO DO CAIXEIRO VIAJANTE
-% ===============================================
+% ==
 % Define as cidades e distâncias entre elas
-% ===============================================
+% ==
 
-% === EXEMPLO 1: Problema Pequeno (4 cidades) ===
+%  EXEMPLO 1: Problema Pequeno (4 cidades) 
 
 % Distâncias entre cidades
 % Forma um "quadrado" com diagonais
@@ -24,7 +24,7 @@ distancia(X, Y, D) :-
 distancia(X, X, 0).
 
 
-% === EXEMPLO 2: Problema Médio (5 cidades) ===
+%  EXEMPLO 2: Problema Médio (5 cidades) 
 % Descomenta para testar com mais cidades
 
 /*
@@ -47,7 +47,7 @@ distancia(X, X, 0).
 */
 
 
-% === EXEMPLO 3: Problema Maior (6 cidades) ===
+%  EXEMPLO 3: Problema Maior (6 cidades) 
 % Descomenta para testar com ainda mais cidades
 
 /*
@@ -61,7 +61,7 @@ distancia(X, X, 0).
 */
 
 
-% === INFORMAÇÃO SOBRE O PROBLEMA ===
+% INFORMAÇÃO SOBRE O PROBLEMA 
 
 % Lista todas as cidades do problema atual
 cidades(Cidades) :-
@@ -75,7 +75,7 @@ num_cidades(N) :-
 
 % Mostra o mapa de distâncias
 mostrar_mapa :-
-    write('=== MAPA DE DISTÂNCIAS ==='), nl,
+    write('MAPA DE DISTÂNCIAS'), nl,
     cidades(Cidades),
     write('Cidades: '), write(Cidades), nl, nl,
     mostrar_distancias(Cidades).
@@ -89,7 +89,7 @@ mostrar_distancias([C|Resto]) :-
     mostrar_distancias(Resto).
 
 
-% === SOLUÇÕES CONHECIDAS (OPCIONAL) ===
+%  SOLUÇÕES CONHECIDAS (OPCIONAL) 
 
 % Para o exemplo de 4 cidades, uma solução ótima conhecida
 % (útil para validar o algoritmo)

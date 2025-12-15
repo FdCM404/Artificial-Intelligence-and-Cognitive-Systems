@@ -1,6 +1,10 @@
 % Definiçao do problema 
 
-transiction(Route, NewRoute) :-
+:- consult(tab_travelling_salesman).
+
+
+% Transição de estado (gera um sucessor por troca de posições)
+transicao(Route, NewRoute) :-
     length(Route, N), % O valor de N é dado pelos elementos presentes em "ROute"
     N > 1,
     between(1, N, Pos1),
@@ -28,10 +32,15 @@ switch_nth([H|T], N, Elem, [H|R]) :-
     switch_nth(T, N1, Elem, R). % Substitui o elemento T na pos N1 pelo Elem e cria uma nova lista R
 
 
-% Calcula o valor de uma rota
-get_route_value(Route, NegativeValue) :-
+% Calcula o valor de uma rota (negativo da distância total)
+% O HC maximiza o valor, então usamos -distância para minimizar distância
+valor(Route, NegativeValue) :-
     get_total_route_dist(Route, TotalDist),
     NegativeValue is -TotalDist.
+
+% Alias para compatibilidade
+get_route_value(Route, NegativeValue) :-
+    valor(Route, NegativeValue).
 
 % Calcula a distância total de uma rota (incluindo volta à origem)
 get_total_route_dist(Route, Total) :-
@@ -49,8 +58,10 @@ sum_dists([City1, City2 | OtherCities], Total) :-
 
 
 
-% Aceitar qualquer solução (deixa esgotar iterações)
-goal(_) :- fail.
+% Objectivo: encontrar rota com distância total mínima
+% Como é um problema de otimização, não há goal state específico
+% O algoritmo HC corre pelas iterações ou até encontrar um patamar
+objectivo(_) :- fail.
 
 % Display de uma rota (Fornece a rota e a distancia)
 show_route(Route) :-
@@ -60,7 +71,7 @@ show_route(Route) :-
 
 % Cria os sucessores possiveis à rota atual
 sucessor(Route, N) :-
-    findall(Sucessor, actionTaken(Route, S), Sucessores),
+    findall(Sucessor, transicao(Route, Sucessor), Sucessores),
     length(Sucessores, N).
 
 

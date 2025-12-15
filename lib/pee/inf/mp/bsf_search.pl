@@ -13,7 +13,7 @@
 init_search(InitState, Frontier, Explored):-
     node_create(InitNode, InitState), % Cria o nó atraves do predicado node_create
     frontier_init(Frontier, InitNode), % Cria a fronteira atravse do predicado frontier_init
-    explored_init(Explored, InitNode). % Initialize explored nodes
+    explored_init(Explored, InitNode). % Inicia nós explorados
 
 % 2 PREDICADO:
 % Enquanto a fronteira não estiver vazia

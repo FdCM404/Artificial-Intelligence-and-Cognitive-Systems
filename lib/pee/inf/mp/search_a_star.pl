@@ -9,3 +9,6 @@ check_func(Node, F):-
     heuristic(State, H),
     % F = G + H.
     F is G + H.
+
+% "Parecido ao dijkstra mas usa um heuristica para dizer que estamos mais prox do obj"
+%

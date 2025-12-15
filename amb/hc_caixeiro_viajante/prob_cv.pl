@@ -1,11 +1,9 @@
-% ===============================================
+
 % PROBLEMA DO "TRAVELLING SALESMAN" (CAIXEIRO VIAJANTE) - DEFINIÇÃO
-% ===============================================
+
 % Este ficheiro define o problema: transições, 
 % avaliação e objetivo para o Caixeiro Viajante
-% ===============================================
 
-% ===============================================
 % DESCRIÇÃO DO PROBLEMA:
 %   O problema do caixeiro-viajante é um problema que tenta determinar a menor
 %   rota para percorrer uma serie de cidades (visitando uma unica vez cada uma delas)
@@ -18,10 +16,10 @@
 % 
 % 
 % https://pt.wikipedia.org/wiki/Problema_do_caixeiro-viajante
-% ===============================================
+% 
 
 
-% === TRANSIÇÕES (GERAR VIZINHOS) ===
+% TRANSIÇÕES (GERAR VIZINHOS) 
 
 % Gera um vizinho trocando duas cidades quaisquer na rota
 % Este é o operador de vizinhança mais comum para o problema
@@ -51,7 +49,7 @@ substituir_nth([H|T], N, Elem, [H|R]) :-
     substituir_nth(T, N1, Elem, R).
 
 
-% === AVALIAÇÃO (FUNÇÃO HEURÍSTICA) ===
+% AVALIAÇÃO (FUNÇÃO HEURÍSTICA) 
 
 % Calcula o valor de uma rota
 % Nota: Como o Hill Climbing maximiza, usamos o NEGATIVO da distância
@@ -74,7 +72,7 @@ soma_distancias([C1, C2|Resto], Total) :-
     Total is D + RestoTotal.
 
 
-% === OBJETIVO ===
+% OBJETIVO 
 
 % Podemos definir diferentes critérios de paragem:
 
@@ -92,13 +90,29 @@ objectivo(_) :- fail.
 %     permutation(Rota, RotaOtima).
 
 
-% === UTILIDADES ===
+% ESTADO ALEATÓRIO (Para HCR) 
+
+% Gera um estado inicial aleatório (permutação aleatória das cidades)
+% estado_aleat(EstadoAleat) :-
+%     % cidades(Cidades),
+%     random_permutation(Cidades, EstadoAleat).
+% 
+% % Predicado auxiliar para obter as cidades
+% cidades(Cidades) :-
+%     findall(C, distancia(C, _, _), TodasCidades),
+%     sort(TodasCidades, Cidades).
+estado_aleat(EstadoAleat) :-
+    random_permutation([a, b, c, d], EstadoAleat).
+
+% Predicado auxiliar para obter as cidades
+cidades([a, b, c, d]).
+%  UTILIDADES 
 
 % Mostra informação sobre uma rota
 mostrar_rota(Rota) :-
     write('Rota: '), write(Rota), nl,
     distancia_total_rota(Rota, Dist),
-    write('Distância total: '), write(Dist), nl.
+    write('Distancia total: '), write(Dist), nl.
 
 % Conta o número de sucessores possíveis
 num_sucessores(Rota, N) :-

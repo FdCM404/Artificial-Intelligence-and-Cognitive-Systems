@@ -1,0 +1,84 @@
+list_cities(Cities) :-
+    findall(C, (distance(C, _, _), C \= _), AllCities),
+    sort(AllCities, Cities), % Unifica cities com all cities
+    format("[LIST_CITIES]: As cidades presentes são: ~w~n",[AllCities]). % So para debug
+
+//Depois 1
+list_cities(Cities) :-
+    findall(C, distance(C, _, _), AllCities),
+    sort(AllCities, Cities), % Remove duplicatas e ordena
+    format("[LIST_CITIES]: As cidades presentes são: ~w~n",[Cities]). % So para debug
+
+//Depois 2
+list_cities(Cities) :-
+    Cities = [a,b,c,d,e,f],
+
+
+
+
+% Teste 3: Testar com diferentes estados iniciais
+teste3 :-
+    write('=== TESTE 3: Diferentes estados iniciais ==='), nl, nl,
+    Estados = [
+        [a, b, c, d],
+        [d, c, b, a],
+        [a, d, b, c],
+        [b, a, d, c]
+    ],
+    testar_multiplos_estados(Estados, 50).
+
+testar_multiplos_estados([], _).
+testar_multiplos_estados([Estado|Resto], NIter) :-
+    write('Estado inicial: '), write(Estado), nl,
+    distancia_total_rota(Estado, DistInicial),
+    write('Distância inicial: '), write(DistInicial), nl,
+    hc(Estado, Solucao, NIter),
+    distancia_total_rota(Solucao, DistFinal),
+    write('Solução: '), write(Solucao), nl,
+    write('Distância final: '), write(DistFinal), nl,
+    Melhoria is DistInicial - DistFinal,
+    write('Melhoria: '), write(Melhoria), nl, nl,
+    testar_multiplos_estados(Resto, NIter).
+
+
+% Teste 4: Análise detalhada de uma execução
+teste4 :-
+    write('=== TESTE 4: Análise detalhada ==='), nl, nl,
+    EstadoInicial = [a, b, c, d],
+    write('Analisando estado inicial...'), nl,
+    mostrar_rota(EstadoInicial),
+    num_sucessores(EstadoInicial, NumSuc),
+    write('Número de vizinhos possíveis: '), write(NumSuc), nl, nl,
+    write('Executando Hill Climbing...'), nl,
+    hc(EstadoInicial, Solucao, 50),
+    write('Resultado: '), mostrar_rota(Solucao).
+
+
+% Teste 5: Verificar se encontra a solução ótima
+teste5 :-
+    write('=== TESTE 5: Procurar solução ótima ==='), nl, nl,
+    solucao_otima_4_cidades(Otima),
+    distancia_otima_4_cidades(DistOtima),
+    write('Solução ótima conhecida: '), write(Otima), nl,
+    write('Distância ótima: '), write(DistOtima), nl, nl,
+    
+    write('Tentando encontrar com Hill Climbing...'), nl,
+    EstadoInicial = [a, b, c, d],
+    hc(EstadoInicial, Solucao, 100),
+    distancia_total_rota(Solucao, DistEncontrada),
+    
+    write('Solução encontrada: '), write(Solucao), nl,
+    write('Distância encontrada: '), write(DistEncontrada), nl, nl,
+    
+    (   DistEncontrada =:= DistOtima
+    ->  write('✓ SUCESSO: Encontrou a solução ótima!'), nl
+    ;   Diferenca is DistEncontrada - DistOtima,
+        write('✗ Não é ótima. Diferença: '), write(Diferenca), nl
+    ).
+
+
+O problema é que estado_aleat/1 está retornando uma lista vazia. Isso significa que o predicado cidades/1 em prob_cv.pl não está funcionando corretamente.
+    
+    estado_aleat(EstadoInicial),
+
+    random_permutation([a, b, c, d], EstadoInicial),
