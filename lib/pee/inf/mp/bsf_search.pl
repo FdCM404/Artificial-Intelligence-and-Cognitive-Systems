@@ -38,8 +38,8 @@ bsf_search(Frontier, Explored, FinalNode):-
                 
 continue_search(Node, Frontier, Explored, FinalNode):-
     expand_node(Node, Successor), % Expande o nó
-    insert_sucessors(Successor, Frontier, NewFrontier, Explored, NewExplored), % Memoriza os sucessores na fronteira e nos explorados
-    bsf_search(NewFrontier, NewExplored, FinalNode).
+    insert_sucessors(Successor, Frontier, NewFrontier, Explored), % Memoriza os sucessores na fronteira e nos explorados
+    bsf_search(NewFrontier, Explored, FinalNode).
 
 end_search(Node):-
     node_state(Node, State),

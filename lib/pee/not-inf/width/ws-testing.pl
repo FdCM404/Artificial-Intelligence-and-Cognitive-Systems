@@ -1,3 +1,5 @@
+% RUNNING!
+
 % ---------------------------------------------------------------
 % Ficheiro de teste unitário para ws_algorithm.pl - Francisco Mendes
 % ---------------------------------------------------------------
@@ -63,3 +65,5 @@ run_tests :-
     (test_bfs_start -> writeln('OK'); writeln('Falhou')),
     format("~n=== Teste 3: Estado objetivo ===~n", []),
     (test_bfs_goal -> writeln('OK'); writeln('Falhou')).
+
+:- run_tests. 

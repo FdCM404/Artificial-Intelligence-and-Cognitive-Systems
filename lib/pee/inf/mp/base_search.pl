@@ -7,9 +7,9 @@ expand_node(Node, Successors):-
     findall(NextNode, successor(Node, NextNode), Successors). % Finds all successors of the node
 
 successor(Node, NextNode):-
-    node_state(CurrNode, CurrState),
+    node_state(Node, CurrState),
     transition(CurrState, NextState, Operator, ActionCost), 
-    node_create(NextNode, NextState, CurrNode, Operator, ActionCost). % Creates the successor node
+    node_create(NextNode, NextState, Node, Operator, ActionCost). % Creates the successor node
 
 % 3 PREDICADO: Objetivo de filtrar e adicionar os sucessores validos à fronteira, evitando 
 %               explorar estados redundantes ou subótimos, otimizando a procura.
@@ -26,3 +26,10 @@ insert_sucessors([NextNode|NextNodes], Frontier, NewFrontier, Explored):-
     frontier_insert(Frontier, F, NextNode, FrontierNext), % Insere o nó sucessor na fronteira
     explored_insert(Explored, NextNode), 
     insert_sucessors(NextNodes, FrontierNext, NewFrontier, Explored).
+
+% 5 PREDICADO: Verifica se o nó já foi explorado
+explored_check(Node,Explored):-
+    explored_get(Explored,Node,NodeExp), % Verifica se o nó está na tabela dos nos explorados
+    node_g(Node, G),
+    node_g(NodeExp, GExp),
+    G >= GExp. % Se o custo do nó for maior ou igual ao custo do nó explorado, considera-o explorado

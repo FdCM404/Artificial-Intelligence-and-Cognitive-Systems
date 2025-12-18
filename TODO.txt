@@ -1,0 +1,9 @@
+Adicionar a partes das redes neurais - impl 1 e 2 
+Fazer impl 3
+
+Verificar ficheiro 1 a 1 para corrigir comentarios e typos 
+
+Se possivel, criar um ambiente 2d novo e fazer mais testes.
+
+
+-> RTAA incompleto?

@@ -8,15 +8,9 @@
 %   O problema do caixeiro-viajante é um problema que tenta determinar a menor
 %   rota para percorrer uma serie de cidades (visitando uma unica vez cada uma delas)
 %   retornando à cidade de origem.
-%     
-%    
-%
-%
-%
-% 
-% 
+
 % https://pt.wikipedia.org/wiki/Problema_do_caixeiro-viajante
-% 
+
 
 
 % TRANSIÇÕES (GERAR VIZINHOS) 

@@ -8,10 +8,8 @@ solution(Node, Solution) :-
 % 2 PREDICADO: solution_get(+Node, +Path, -Solution)
 % Neste caso, se nao existir nó antecessor
 solution_get(Node, Path, Path) :-
-    node_prev(Node, none), 
-    node_state(Node, CurrState), % Extrai o estado do nó inicial
-    Solution = [CurrState-none|Path]. % Adiciona o estado inicial ao caminho
-    % !.
+    node_prev(Node, none),
+    !.
 
 % 3 PREDICADO : solution_get(+Node, +Path, -Solution)
 solution_get(Node, Path, Solution) :-

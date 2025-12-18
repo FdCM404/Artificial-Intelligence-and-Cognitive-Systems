@@ -1,6 +1,4 @@
-% Corrigir para a minha versao
-
-:- consult(bsf_p_search).
+:- consult('bsf_p_search').
 
 :- dynamic h/1.
 
@@ -9,10 +7,10 @@ iniciar_rtaa :-
     memorizar_h(HFechados).
 
 resolver_rtaa(Estado, NoU, ProfMax) :-
-    resolver(Estado, Explorados, NoU, ProfMax),
+    solve(Estado, Explorados, NoU, ProfMax),
     avaliar(NoU, FU),
     h(HFechados),   
-    foreach(explorados_enumerar(Explorados, NoV),
+    foreach(explored_enumerate(Explorados, NoV),
             actualizar_h(HFechados, NoV, FU)),
     memorizar_h(HFechados).
 
@@ -21,14 +19,14 @@ memorizar_h(HFechados) :-
     assert(h(HFechados)).
 
 actualizar_h(HFechados, NoV, FU) :-
-    no_g(NoV, GV),
+    node_g(NoV, GV),
     HV is FU - GV,
-    no_estado(NoV, EstadoV),
+    node_state(NoV, EstadoV),
     ht_put(HFechados, EstadoV, HV).
 
 avaliar(No, F) :-
-    no_g(No, G),
-    no_estado(No, Estado),
+    node_g(No, G),
+    node_state(No, Estado),
     obter_heuristica(Estado, H),
     F is G + H.
 
