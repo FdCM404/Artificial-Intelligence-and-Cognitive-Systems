@@ -82,3 +82,13 @@ O problema é que estado_aleat/1 está retornando uma lista vazia. Isso signific
     estado_aleat(EstadoInicial),
 
     random_permutation([a, b, c, d], EstadoInicial),
+
+
+
+Comparação de estratégia
+
+Greedy: só minimiza h (heurística) → pode não ser ótimo
+A*: minimiza f = g + h (custo real + heurística) → ótimo
+DFS: ordem de profundidade → sem heurística
+BFS: ordem de largura → sem heurística
+Custo uniforme: só custo real (g) → ótimo

@@ -1,18 +1,18 @@
 % Definição do ambiente para STRIPS - Mundo dos Blocos
 
-% --- Blocos disponíveis ---
+% Blocos disponíveis 
 bloco(a).
 bloco(b).
 bloco(c).
 
-% --- Condições possíveis ---
+% Condições possíveis 
 condicao(sobre(X, Y)) :- bloco(X), (bloco(Y) ; Y = mesa).
 condicao(livre(X)) :- bloco(X).
 condicao(livre(mesa)).
 condicao(mao_vazia).
 condicao(segurando(X)) :- bloco(X).
 
-% --- Ações disponíveis ---
+% Ações disponíveis 
 
 % Desempilhar bloco X de cima de Y
 % Pré-condições: X sobre Y, X livre, mão vazia
@@ -22,7 +22,7 @@ accao(desempilhar(X, Y),
       [segurando(X), livre(Y)]).
 
 % Pousar um bloco na mesa
-% Pré-condições: segurando o bloco
+% Pré-condições: segurar o bloco
 % Efeitos: bloco sobre mesa, bloco livre, mão vazia
 accao(pousar(X),
       [segurando(X)],

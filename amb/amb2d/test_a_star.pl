@@ -20,7 +20,7 @@ explored(Node, Explored) :- explored_check(Node, Explored).
 % --- Runner simples para testar no ambiente ---
 % Gera as transições, corre A* e mostra caminho e ambiente.
 
-teste :-
+test :-
     iniciar_ambiente(8),               % gera transições com 8 movimentos (inclui diagonais)
     inicio(Init),                      % estado inicial do problema
     init_search(Init, F, E),           % fronteira + explorados
@@ -36,4 +36,4 @@ teste :-
     format('Caminho (Estado-Accao): ~w\n', [Path]).
 
 % Alias conveniente
-run :- teste.
+run :- test.

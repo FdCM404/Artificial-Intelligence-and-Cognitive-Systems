@@ -4,12 +4,12 @@
 :- consult(solution).
 
 expand_node(Node, Successors):-
-    findall(NextNode, successor(Node, NextNode), Successors). % Finds all successors of the node
+    findall(NextNode, successor(Node, NextNode), Successors). % Encontra todos os sucessores de um no
 
 successor(Node, NextNode):-
     node_state(Node, CurrState),
     transition(CurrState, NextState, Operator, ActionCost), 
-    node_create(NextNode, NextState, Node, Operator, ActionCost). % Creates the successor node
+    node_create(NextNode, NextState, Node, Operator, ActionCost). % Cria o sucessor de um no
 
 % 3 PREDICADO: Objetivo de filtrar e adicionar os sucessores validos à fronteira, evitando 
 %               explorar estados redundantes ou subótimos, otimizando a procura.

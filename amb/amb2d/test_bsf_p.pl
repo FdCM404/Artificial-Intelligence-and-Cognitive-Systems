@@ -26,7 +26,7 @@ check_func(Node, F) :-
 % --- Runner simples para testar no ambiente ---
 % Gera as transições, corre Melhor-Primeiro Parcial e mostra caminho.
 
-teste :-
+test :-
     iniciar_ambiente(8),               % gera transições com 8 movimentos (inclui diagonais)
     inicio(Init),                      % estado inicial do problema
     MaxDepth = 72,                     % profundidade máxima de exploração
@@ -44,4 +44,4 @@ teste :-
     format('Caminho (Estado-Accao): ~w\n', [Path]).
 
 % Alias conveniente
-run :- teste.
+run :- test.

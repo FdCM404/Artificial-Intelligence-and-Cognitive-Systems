@@ -4,7 +4,7 @@
 :- consult('def_amb_strips').
 :- consult('../../lib/strips/strips').
 
-% --- Teste do Mundo dos Blocos ---
+% Teste do Mundo dos Blocos 
 
 teste :-
     % Estado inicial: A sobre B, C livre

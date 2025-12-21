@@ -15,7 +15,7 @@ check_func(Node, F) :-
     heuristic(State, H),
     F is G + H.
 
-teste :-
+test :-
     iniciar_ambiente(8),
     inicio(Estado),
     iniciar_rtaa,  % Inicializa a tabela de heurísticas
@@ -39,5 +39,5 @@ resolver_ciclo_rtaa(Estado, ProfMax) :-
 resolver_ciclo_rtaa(_Estado, _ProfMax) :-
     writeln('Solução não encontrada').
 
-% Alias conveniente
-run :- teste.
+% Alias
+run :- test.
