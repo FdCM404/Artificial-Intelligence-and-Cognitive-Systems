@@ -1,4 +1,4 @@
-#### **Estrutura do Repositório**
+### **Estrutura do Repositório**
 
 **1. Lógica Simbólica e Procura (Prolog):**
    
@@ -19,14 +19,14 @@
   - Treino: Algoritmo de retropropagação (backpropagation) com aplicação de factor de momento para estabilizar a descida do gradiente.
 
 
-#### **Requisitos e Instalação**
+### **Requisitos e Instalação**
 
   - SWI-Prolog (v8.x ou superior): Para os módulos de procura e optimização.
 
   - Python (v3.8 ou superior): Para os módulos de aprendizagem.
 
 
-#### **Como Executar**
+### **Como Executar**
 
 **Procura e Optimização (Prolog):**
   - Inicie o SWI-Prolog na directoria do problema relevante: ```swipl -s test_a_star.pl```
@@ -35,7 +35,7 @@
 **Aprendizagem e Redes Neuronais (Python):**
  - Navegue até à directoria do algoritmo pretendido e execute o script principal: ```python3 main.py```
 
-#### **Análise de Resultados:**
+### **Análise de Resultados:**
 
 O projeto validou a eficácia dos algoritmos em cenários distintos:
 
